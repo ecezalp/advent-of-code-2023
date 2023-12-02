@@ -2,27 +2,51 @@ package main
 
 import (
 	"bufio"
-	"ece-advent-2023/days"
+	. "ece-advent-2023/days"
 	"fmt"
 	"os"
 )
 
 func main() {
-	if len(os.Args) != 4 {
-		os.Exit(1)
+	dayNumber := os.Args[1]
+	part := os.Args[2]
+	input := createSliceFromInput(os.Args[3])
+	output := ""
+	if os.Args[4] != "" {
+		output = createSliceFromInput(os.Args[4])[0]
 	}
-	dayRunner := loadDay(os.Args[1], createSliceFromInput(os.Args[2]), createSliceFromInput(os.Args[3]))
-	dayRunner.RunWithInput1()
-	dayRunner.RunWithInput2()
+
+	day := getDay(dayNumber)
+	var run func(input []string) string
+	if part == "1" {
+		run = day.Part1
+	} else {
+		run = day.Part2
+	}
+
+	result := run(input)
+	if output != "" {
+		if result == output {
+			fmt.Println("Success")
+		} else {
+			fmt.Println(fmt.Sprintf("Fail: Expected %s, Got %s", output, result))
+		}
+	} else {
+		fmt.Println(result)
+	}
 }
 
-func loadDay(dayNumber string, input1 []string, input2 []string) DayRunner {
+func getDay(dayNumber string) Day {
+	var day Day
 	switch dayNumber {
 	case "1":
-		return days.InitDay1Module(input1, input2)
+		day = NewDay1()
+	case "2":
+		day = NewDay2()
 	default:
-		return days.InitDay1Module(input1, input2)
+		day = NewDay1()
 	}
+	return day
 }
 
 func createSliceFromInput(filePath string) (response []string) {
@@ -51,7 +75,7 @@ func createSliceFromInput(filePath string) (response []string) {
 	return response
 }
 
-type DayRunner interface {
-	RunWithInput1()
-	RunWithInput2()
+type Day interface {
+	Part1(input []string) string
+	Part2(input []string) string
 }
