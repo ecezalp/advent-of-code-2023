@@ -122,8 +122,7 @@ func (d Day5) Part2(input []string) string {
 	source, dest = findCorrespondingRange(values[1], source, dest)
 
 	// 1520731987, 1594903067
-
-	return fmt.Sprintf("%v, %v", Day5.Part1())
+	return ""
 }
 
 func NewDay5() Day5 {

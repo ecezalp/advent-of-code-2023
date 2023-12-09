@@ -53,6 +53,8 @@ func getDay(dayNumber string) Day {
 		day = NewDay6()
 	case "7":
 		day = NewDay7()
+	case "8":
+		day = NewDay8()
 	default:
 		day = NewDay1()
 	}

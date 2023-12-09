@@ -57,7 +57,7 @@ if [ -n "$TEST_FLAG" ]; then
   INPUT_FILE="$INPUT_DIR/day${DAY_NUMBER}_test${PART}.txt"
   ANSWER_FILE="$INPUT_DIR/day${DAY_NUMBER}_test${PART}_answer.txt"
 else
-  INPUT_FILE="$INPUT_DIR/day${DAY_NUMBER}_input${PART}.txt"
+  INPUT_FILE="$INPUT_DIR/day${DAY_NUMBER}_input1.txt"
   ANSWER_FILE=""  # No answer file for non-test runs
 fi
 
